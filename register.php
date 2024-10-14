@@ -1,5 +1,28 @@
 <?php require "includes/header.php"; ?>
 
+<?php require "config.php";?>
+
+<?php 
+
+  if(isset($_POST['submit'])){
+    if ($_POST['email'] == '' or $_POST['username'] == '' or $_POST['password'] ==''){
+      echo "some inputs are empty";
+    }else{
+      $email = $_POST['email'];
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+    
+    $insert = $conn->prepare("INSERT INTO user (email,username,mypassword) VALUES (:email , :username, :mypassword)");
+    
+    $insert -> execute([
+      ':email' => $email,
+      ':username' => $username,
+      ':password' => password_hash($password, PASSWORD_DEFAULT),
+    ]);
+    }
+  }
+   ?>
+
 
 
 <main class="form-signin w-50 m-auto">
