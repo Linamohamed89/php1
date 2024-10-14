@@ -11,11 +11,11 @@ $dbname ='auth-system';
 $conn = new PDO("mysql:host=$host;dbname=$dbname;", $username, $password);
 
 
-if($conn== true){
-    echo "it's working fine";
-}else{
-    echo"connection is weong : err";
-}
+// if($conn== true){
+//     echo "it's working fine";
+// }else{
+//     echo"connection is weong : err";
+// }
 
 //2.Database connected..طريقه الاتصال مع قاعدة البيانات 2 
 // $conn = new mysqli($host ,$username ,$password);
