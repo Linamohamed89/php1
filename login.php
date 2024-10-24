@@ -8,13 +8,7 @@
 
 // check for the row count 
 
-//use the password_verify function ->they actually check for the right password 
-  // هنا يمكن التحقق من كلمة المرور باستخدام دالة password_verify
-        // if (password_verify($password, $data['password'])) {
-        //     // تسجيل الدخول ناجح
-        // } else {
-        //     echo "كلمة المرور خاطئة"; // رسالة خطأ في حالة كلمة مرور خاطئة
-        // }
+
 
 
 //check for the submit ..تحقق مما إذا كان النموذج قد تم إرسال/
@@ -31,6 +25,20 @@ if (isset($_POST['submit'])){
     $login =$conn->query("SELECT * FROM users WHERE email ='$email'");
     $login -> execute();// تنفيذ الاستعلام
     $data = $login->fetch(PDO::FETCH_ASSOC);// جلب البيانات كمصفوفة
+  
+    if ($login->rowCount() > 0){
+      //use the password_verify function ->they actually check for the right password 
+  // هنا يمكن التحقق من كلمة المرور باستخدام دالة password_verify
+        if (password_verify($password, $data['mypassword'])) {
+            echo "logged in";// تسجيل الدخول ناجح
+        } else {
+            echo " email or password is wrong ,كلمة المرور خاطئة"; // رسالة خطأ في حالة كلمة مرور خاطئة
+        }
+
+    } else {
+            echo " email or password is wrong ,كلمة المرور خاطئة"; // رسالة خطأ في حالة كلمة مرور خاطئة
+        }
+  
   }
 }
 ?>
