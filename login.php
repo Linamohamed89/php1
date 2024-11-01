@@ -9,7 +9,9 @@
 // check for the row count 
 
 
-
+if (isset($_SESSION['username'])){
+  header("location: index.php");
+}
 
 //check for the submit ..تحقق مما إذا كان النموذج قد تم إرسال/
 if (isset($_POST['submit'])){
@@ -30,7 +32,11 @@ if (isset($_POST['submit'])){
       //use the password_verify function ->they actually check for the right password 
   // هنا يمكن التحقق من كلمة المرور باستخدام دالة password_verify
         if (password_verify($password, $data['mypassword'])) {
-            echo "logged in";// تسجيل الدخول ناجح
+           $_SESSION['username'] = $data['username'];
+           $_SESSION['email'] = $data['email'];// تخزين اسم المستخدم في سجل الجلسة
+
+
+           header("location:index.php");
         } else {
             echo " email or password is wrong ,كلمة المرور خاطئة"; // رسالة خطأ في حالة كلمة مرور خاطئة
         }
